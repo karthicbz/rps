@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    max-width: 800px;
+    height: 500px;
+    margin: 20px auto 0;
+    border: 5px solid black;
+    position: relative;
+}
+
+#buttons{
+    text-align: center;
+}
+
+button{
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+    background: white;
+    margin: 50px 10px 0;
+    font-size: 22px;
+}
+
+#pcSelected{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 25px;
+    opacity: 0;
+}
+
+#matchResult{
+    color: white;
+    background: black;
+    padding: 20px;
+    text-align: center;
+    font-size: 50px;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 45px;
+    opacity: 0;
+}
+
+#rounds{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#rounds p{
+    font-size: 18px;
+}
+
+#scoreBoard{
+    max-width: 800px;
+    height: 500px;
+    background: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    /* opacity: 0; */
+    display: none;
+}
+
+#scoreBoard button{
+    border: 3px solid white;
+    background-color: black;
+    color: white;
+    margin-left: 330px;
+    margin-top: 350px;
+}

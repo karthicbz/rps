@@ -1,0 +1,62 @@
+//rock, paper and scissors in array and assign it to options variable
+let options = ['rock', 'paper', 'scissors'];
+//anonymous function to get a random number between 1-3 and use the random+ 
+//number to get a option from options array.
+const computerSelection = function(){
+    let selected = Math.floor(Math.random()*3)+1;
+    return options[selected-1];
+}
+
+//Main function to check who wins
+function playRound(player, computer){
+    if(options.includes(player)){
+        if((player === 'rock' && computer === 'scissors') 
+        || (player === 'paper' && computer === 'rock')
+        || (player === 'scissors' && computer === 'paper')){
+            return 'Player wins';
+        }else if(player === computer){
+            return 'Game Tie';
+        }
+        else{
+            return 'Computer wins';
+        }
+    }else{
+        return 'Wrong input';
+    }
+}
+
+//Another function to check who win the match.
+function winner(playerWin, computerWin){
+    if(playerWin > computerWin){
+        return 'Player Wins';
+    }else if(computerWin > playerWin){
+        return 'Computer Wins';
+    }else{
+        return 'Match Tie';
+    }
+}
+
+//This is the function which loops five times and calculate wins and finally display the winning message.
+function game(){
+    let i=1;
+    let playerWin = 0, computerWin = 0;
+    while(i<=5){
+        let playerSelection = prompt('Select Rock or Paper or Scissors ?');
+        let result = playRound(playerSelection, computerSelection());
+        alert(result);
+        if(result === 'Player wins'){
+            playerWin += 1;
+        }else if(result === 'Computer wins'){
+            computerWin += 1;
+        }else if(result === 'Wrong input'){
+            i -= 1;
+        }
+        i += 1;
+    }
+    alert('Number of match: '+(i-1)+'\nPlayer won '+playerWin+' times'+
+    '\nComputer won '+computerWin+' times\n Match Tie '+((i-1)-(playerWin+computerWin))
+    +'\n'+winner(playerWin, computerWin));
+    alert('Reload the page to play again');
+}
+
+game();
