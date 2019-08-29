@@ -1,4 +1,5 @@
 let i=5;
+let playerWin=0, computerWin=0;
 let buttons = document.querySelectorAll('button');
 
 
@@ -14,14 +15,19 @@ buttons.forEach((button)=>{
         showPcSelected(pcSelected, 9);
         result = resultChecker(pcSelected, String(e.target.innerText).toLowerCase())
         //showResult(e.target.innerText, 9);
+        if(result === 'You Win!'){
+            playerWin +=1;
+        }else if(result === 'Computer Win!'){
+            computerWin +=1;
+        }
         showResult(result, 1);
         i--;
         }
         else{
-            showScoreBoard('block');
+            showScoreBoard('block', playerWin, computerWin);
         }
-    })
-})
+    });
+});
 
 
 function showResult(text, opacity){
@@ -46,15 +52,33 @@ function resultChecker(pcChoosed, humanChoosed){
     if(humanChoosed === 'rock' && pcChoosed === 'scissors'
     ||humanChoosed === 'paper' && pcChoosed === 'rock'
     ||humanChoosed === 'scissors' && pcChoosed === 'paper'){
-        return 'You win!';
+        return 'You Win!';
     }else if(pcChoosed === humanChoosed){
         return 'Tied';
     }else{
-        return 'Computer Wins!';
+        return 'Computer Win!';
     }
 }
 
-function showScoreBoard(display){
+function showScoreBoard(display, playerScore, computerScore){
+    let finalResult = ()=>{
+        if(playerScore > computerScore){
+            return 'Player Wins!';
+        }else if(computerScore > playerScore){
+            return 'Computer Wins!';
+        }else{
+            return 'Game Tie';
+        }
+    }
+    let scoreDetails = document.querySelector('#scoreBoard p');
+    scoreDetails.textContent = `Number of Matches: 5\n\nPlayer won ${playerScore} times\n\nComputer won ${computerScore} times\n\nGame Tied ${5-(playerScore+computerScore)} times`;
+    let scoreMessage = document.querySelector('#scoreBoard h2');
+    scoreMessage.textContent = `${finalResult()}`;
     let scoreBoard = document.getElementById("scoreBoard");
     scoreBoard.style.display = display;
 }
+
+let tryAgain = document.querySelector('#scoreBoard button');
+tryAgain.addEventListener('click', ()=>{
+    window.location.reload();
+});
